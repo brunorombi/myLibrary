@@ -4,6 +4,7 @@ const addBtn = document.querySelector('.new');
 const closeBtn = document.querySelector('.close');
 const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
+const removeBtns = document.querySelectorAll('.remove');
 
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
@@ -25,6 +26,7 @@ function showBooks() {
     myLibrary.forEach(book => {
         const newBook = document.createElement("div");
         newBook.classList.add('book');
+        newBook.dataset.id = book.id;
 
         const title = document.createElement('h1');
         title.textContent = book.title;
@@ -38,7 +40,11 @@ function showBooks() {
         const read = document.createElement('p');
         read.textContent = book.read ? "read" : "not read yet";
 
-        newBook.append(title, author, pages, read);
+        const remove = document.createElement('button');
+        remove.classList.add('remove');
+        removeCard(remove);
+
+        newBook.append(title, author, pages, read, remove);
         parentContainer.appendChild(newBook);
     });
 }
@@ -70,3 +76,29 @@ form.addEventListener('submit', (e) => {
     dialog.close();
     form.reset();
 });
+
+
+removeBtns.forEach(function (button) {
+    button.addEventListener('click', () => {
+        console.log('botao funcionando')
+    });
+});
+    
+
+    console.log('botao funcionando')
+    // const parent = removeBtn.closest(".book");
+    // console.log(parent);
+    // const id = parent.dataset.id;
+    // myLibrary = myLibrary.filter(book => book.id === id);
+
+
+function removeCard(button) {
+    button.addEventListener('click', () => {
+        const id = button.closest('.book').dataset.id;
+        
+        const index = myLibrary.findIndex(book => book.id === id);
+        myLibrary.splice(index, 1)
+
+        showBooks();
+    })
+}

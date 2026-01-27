@@ -43,8 +43,9 @@ main {
 
 .book-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
     gap: 20px; 
+    justify-content: center;
 }
 
 .book-container .book {
@@ -54,6 +55,20 @@ main {
     text-align: center;
     height: 300px;
 }
+
+.remove {
+    padding: 20px 10px;
+    color: white;
+    border: none;
+    background-color: #DC143C;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.remove::after {
+    content: "Remove";
+}
+
 
 dialog {
     border: none;
@@ -76,3 +91,4 @@ dialog form {
 label {
     text-align: start;
 }
+
