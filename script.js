@@ -1,14 +1,16 @@
 const myLibrary = [];
 
+const addBtn = document.querySelector('.new');
+const closeBtn = document.querySelector('.close');
+const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
+
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-        return `The ${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`
-    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -16,29 +18,55 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-addBookToLibrary("bruno", "rombi", "120", true);
-
-
 function showBooks() {
-    myLibrary.forEach(book => {
-        const parentContainer = document.querySelector('.book-container');
+    const parentContainer = document.querySelector('.book-container');
+    parentContainer.innerHTML = "";
 
+    myLibrary.forEach(book => {
         const newBook = document.createElement("div");
         newBook.classList.add('book');
 
-
         const title = document.createElement('h1');
         title.textContent = book.title;
+
         const author = document.createElement('h3');
         author.textContent = book.author;
+
         const pages = document.createElement('p');
-        pages.textContent = book.pages
+        pages.textContent = `${book.pages} pages`;
+
         const read = document.createElement('p');
         read.textContent = book.read ? "read" : "not read yet";
 
         newBook.append(title, author, pages, read);
         parentContainer.appendChild(newBook);
-    })
+    });
 }
 
-showBooks();
+function getInputValues() {
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').checked;
+
+    return { title, author, pages, read };
+}
+
+addBtn.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+closeBtn.addEventListener('click', () => {
+    dialog.close();
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const { title, author, pages, read } = getInputValues();
+
+    addBookToLibrary(title, author, pages, read);
+    showBooks();
+    dialog.close();
+    form.reset();
+});
