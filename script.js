@@ -13,6 +13,15 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+        if(this.read === true) {
+            this.read = false;
+        } else {
+            this.read = true;
+        }
+        console.log(this.read)
+    }
+
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -37,6 +46,11 @@ function showBooks() {
         pages.textContent = `${book.pages} pages`;
 
         const read = document.createElement('button');
+
+        read.addEventListener('click', function () {
+            book.toggleRead();
+            read.textContent = book.read ? "read" : "not read yet";
+        });
         read.textContent = book.read ? "read" : "not read yet";
 
         const remove = document.createElement('button');
@@ -76,13 +90,7 @@ form.addEventListener('submit', (e) => {
     dialog.close();
     form.reset();
 });
-
-removeBtns.forEach(function (button) {
-    button.addEventListener('click', () => {
-        console.log('botao funcionando')
-    });
-});
-    
+ 
 function removeCard(button) {
     button.addEventListener('click', () => {
         const id = button.closest('.book').dataset.id;
@@ -92,10 +100,4 @@ function removeCard(button) {
 
         showBooks();
     })
-}
-
-function toggleButton(button) {
-    button.addEventListener('click', () => {
-        newBook.prototype.read = 0;
-    });
 }
