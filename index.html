@@ -16,29 +16,32 @@
 
         <main>
             <div class="book-container">
-                <div class="book">
-                    <h1>Harry Potter</h1>
-                    <h3>J.K. ROWLING</h3>
-                    <p>385 pages</p>
-                    <p>read</p>
-                    <button class="remove"></button>   
-                </div>
             </div>
 
-            <dialog>
+            <dialog open>
                 <h2>Add New Book</h2>
                 <form action="">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" required maxlength="60">
-                    <label for="author">Author:</label>
-                    <input type="text" name="author" required maxlength="60" id="author">
-                    <label for="pages">Pages:</label>
-                    <input type="number" name="pages" required id="pages">
-                    <label for="read">Read:</label>
-                    <input type="checkbox" id="read">
+                    
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="title" required maxlength="60">
 
-                    <button class="submit" type="submit">Submit</button>
-                    <button class="close" type="button">Close</button>
+                   
+                    
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" required maxlength="60" id="author">
+                    
+                    
+                        <label for="pages">Pages:</label>
+                        <input type="number" name="pages" required id="pages">
+                    
+                    
+                        <label for="read">Read:</label>
+                        <input type="checkbox" id="read">
+                        <div></div>
+                    <div>
+                        <button class="submit" type="submit">Submit</button>
+                        <button class="close" type="button">Close</button>
+                    </div>
                 </form>
             </dialog>
 

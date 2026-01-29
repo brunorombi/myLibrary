@@ -27,7 +27,8 @@ header h1 {
 }
 
 header .new,
-.submit  {
+.submit,
+.close {
     border: none;
     padding: 20px 40px;
     color: white;
@@ -49,20 +50,57 @@ main {
 }
 
 .book-container .book {
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     padding: 20px;
-    text-align: center;
-    height: 300px;
+    background-color: #ffffff;
 }
 
-.remove {
-    padding: 20px 10px;
+.book > div {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.book > div button {
+    padding: 15px;
     color: white;
     border: none;
-    background-color: #DC143C;
+    background-color: #75B06F;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 15px;
+    width: 50%;
+}
+
+.book h3 {
+    font-weight: 400;
+}
+
+.book p {  
+    color: gray;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+button:hover {
+    transition: 0.125s;
+    opacity: 0.8;
+}
+
+button:active {
+    transition: 0.125s;
+    opacity: 0.6;
+}
+
+.book .notRead {
+    background-color: #4361EE;
+}
+
+.book .remove {
+    background-color: #DC143C !important;
 }
 
 .remove::after {
@@ -73,7 +111,7 @@ main {
 dialog {
     border: none;
     border-radius: 12px;
-    padding: 30px;
+    padding: 40px;
     width: 400px;
     text-align: center;
 
@@ -81,14 +119,39 @@ dialog {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-dialog form {
+dialog h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 15px 10px;
+}
+
+form input[type=text],
+form input[type=number] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+form input[type=checkbox] {
+    align-self: center;
+    justify-self: flex-start;
+}
+
+form div {
     display: flex;
-    flex-direction: column;
+    gap: 10px;
 }
 
-label {
-    text-align: start;
+.close {
+    background-color: #DC143C;
 }
 

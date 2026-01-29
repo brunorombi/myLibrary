@@ -111,10 +111,10 @@ function changeStatus(button, book) {
 
 function updateStatus(button, book) {
     if(book.read) {
-         button.textContent = "read";
+         button.textContent = "Read";
          button.classList.remove('notRead');
     } else {
-        button.textContent = "not read yet";
+        button.textContent = "Not read";
         button.classList.add('notRead');
     }
 }
