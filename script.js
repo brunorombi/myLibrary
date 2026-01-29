@@ -47,17 +47,17 @@ function showBooks() {
 
         const read = document.createElement('button');
 
-        read.addEventListener('click', function () {
-            book.toggleRead();
-            read.textContent = book.read ? "read" : "not read yet";
-        });
-        read.textContent = book.read ? "read" : "not read yet";
+        changeStatus(read, book);
+        updateStatus(read, book);
 
         const remove = document.createElement('button');
         remove.classList.add('remove');
         removeCard(remove);
 
-        newBook.append(title, author, pages, read, remove);
+        const buttonContainer = document.createElement('div');
+        buttonContainer.append(read, remove);
+
+        newBook.append(title, author, pages, buttonContainer);
         parentContainer.appendChild(newBook);
     });
 }
@@ -100,4 +100,21 @@ function removeCard(button) {
 
         showBooks();
     })
+}
+
+function changeStatus(button, book) {
+    button.addEventListener('click', () => {
+        book.toggleRead();
+        updateStatus(button, book);
+    });
+}
+
+function updateStatus(button, book) {
+    if(book.read) {
+         button.textContent = "read";
+         button.classList.remove('notRead');
+    } else {
+        button.textContent = "not read yet";
+        button.classList.add('notRead');
+    }
 }
